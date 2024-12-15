@@ -20,7 +20,7 @@ contract TestToken is Token {
     }
 
     // Exercise 2
-    function echidna_cannot_be_unpause() public view returns (bool) {
-        // TODO: add the property
+    function echidna_cannot_be_unpause() public returns (bool) {
+        return paused() == true;
     }
 }
