@@ -3,6 +3,11 @@ pragma solidity ^0.8.0;
 contract Ownable {
     address public owner = msg.sender;
 
+    // Funtion needed for exercise 2
+    function Owner() public {
+        owner = msg.sender;
+    }
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Ownable: Caller is not the owner.");
         _;
