@@ -4,10 +4,15 @@ contract Ownable {
     address public owner = msg.sender;
 
     // Original exercise 2 code
-    // Solution exercise 2 code
+    // Solution exercise 2 code remove this lines
     // function Owner() public {
     //     owner = msg.sender;
     // }
+
+    // Original exercise 4 code
+    function transferOwnership(address newOwner) public onlyOwner {
+        owner = newOwner;
+    }
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Ownable: Caller is not the owner.");
@@ -40,14 +45,14 @@ contract Token is Ownable, Pausable {
     mapping(address => uint256) public balances;
 
     function transfer(address to, uint256 value) public whenNotPaused {
-        // Original exercise 1 code
-        // unchecked {
-        //     balances[msg.sender] -= value;
-        //     balances[to] += value;
-        // }
+        // Original exercise 1 and 4 code
+        unchecked {
+            balances[msg.sender] -= value;
+            balances[to] += value;
+        }
 
         // Solution to exercise 1
-        balances[msg.sender] -= value;
-        balances[to] += value;
+        // balances[msg.sender] -= value;
+        // balances[to] += value;
     }
 }

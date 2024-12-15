@@ -23,4 +23,12 @@ contract TestToken is Token {
     function echidna_cannot_be_unpause() public view returns (bool) {
         return paused() == true;
     }
+
+    // Exercise 4
+    function transfer(address to, uint256 value) public override {
+        // TODO: include `assert(condition)` statements that
+        // detect a breaking invariant on a transfer.
+        // Hint: you may use the following to wrap the original function.
+        super.transfer(to, value);
+    }
 }
