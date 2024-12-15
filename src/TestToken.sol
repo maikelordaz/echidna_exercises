@@ -1,11 +1,12 @@
 pragma solidity ^0.8.0;
 
 import "src/Token.sol";
+import "src/MintableToken.sol";
 
-contract TestToken is Token {
-    address echidna = tx.origin;
+contract TestToken is Token, MintableToken {
+    address echidna = msg.sender;
 
-    constructor() {
+    constructor(int256 totalMintable) MintableToken(totalMintable) {
         // Exercise 1
         balances[echidna] = 10_000;
 
@@ -20,7 +21,12 @@ contract TestToken is Token {
     }
 
     // Exercise 2
-    function echidna_cannot_be_unpause() public returns (bool) {
+    function echidna_cannot_be_unpause() public view returns (bool) {
         return paused() == true;
+    }
+
+    // Exercise 2
+    function echidna_test_balance_exercise_3() public view returns (bool) {
+        // TODO: add the property
     }
 }
