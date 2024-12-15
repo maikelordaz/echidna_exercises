@@ -26,9 +26,15 @@ contract TestToken is Token {
 
     // Exercise 4
     function transfer(address to, uint256 value) public override {
-        // TODO: include `assert(condition)` statements that
-        // detect a breaking invariant on a transfer.
-        // Hint: you may use the following to wrap the original function.
+        // Solution to exercise 4
+        uint256 initial_balance_from = balances[msg.sender];
+        uint256 initial_balance_to = balances[to];
+
+        // Original exercise 4 code
         super.transfer(to, value);
+
+        // Solution to exercise 4
+        assert(balances[msg.sender] <= initial_balance_from);
+        assert(balances[to] >= initial_balance_to);
     }
 }
